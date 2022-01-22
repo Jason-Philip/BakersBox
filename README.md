@@ -1,108 +1,325 @@
-![CI logo](https://codeinstitute.s3.amazonaws.com/fullstack/ci_logo_small.png)
+<h1 align="center">The Baking Box</h1>
 
-Welcome Jason-Philip,
+![Responsive Website Mockup](assets/readme-imgs/mymockup.png)
 
-This is the Code Institute student template for Gitpod. We have preinstalled all of the tools you need to get started. It's perfectly ok to use this template as the basis for your project submissions.
+[View the live project here.](https://jason-philip.github.io/ColorMemoryGame/)
 
-You can safely delete this README.md file, or change it for your own project. Please do read it at least once, though! It contains some important information about Gitpod and the extensions we use. Some of this information has been updated since the video content was created. The last update to this file was: **September 1, 2021**
+A sequence and memory testing game that uses a 3x3 grid pattern of squares that light up in random order with a random color.  The user must remember this order and color executing it back using clicks and color selection.  The site will provide a peaceful and focused place for the user to challenge themselves and have fun.
 
-## Gitpod Reminders
+## User Experience Goals (UX)
+1. The site should be simple to understand and easy to engage with, even without detailed reading of the instructions.
+2. The content should meet the requierement of challenging a range of skill levels with a lower-end of difficulty that all will be able to perform and upper-end that only the best memory can meet.
+3. The atmosphere of the background and interactions should be undistracting and subdued, so that the user can stay focused and concentrate on the game 
+4. The user will want unobtrusive confirmation of how they are performing and what they did right or wrong.
+5. The user should not have to worry about causing a problem in game logic, while using the site.
 
-To run a frontend (HTML, CSS, Javascript only) application in Gitpod, in the terminal, type:
+## Design
+-   ### Wireframes
+    The wireframes from the initial design concept stage can be found here detailing all pages of the site. These design stay mainly tue to what the end product was.
+    - [Home Page](static/imgs/wireframes/home.png)
+    - [Login](static/imgs/wireframes/login.png)
+    - [Register](static/imgs/wireframes/register.png)
+    - [Find a Bake](static/imgs/wireframes/findabake.png)
+    - [Example Recipe](static/imgs/wireframes/item.png)
+    - [My Baking Box](static/imgs/wireframes/mybakingbox.png)
 
-`python3 -m http.server`
+-   ### Color and Style Selection
+    The approach to the style of the site was minimalist so that the user can be fully focused on the challenge.  A off-white color was used for the background to not strain the eye.  For the color flashes primary colors were used to avoid confusion and make clear the pattern.  All buttons are styled to hint at their purpose paintbrush is red, to apply red paint.  The 3x3 pattern was kept as large as possible screensize permitting, while maintaining its distinctive squares.
 
-A blue button should appear to click: _Make Public_,
+-   ### Features
+    -   #### Modals
+    Onload the help modal pop-up triggers so the user can familiarise themselves with the rules (Recommended by user feedback).
+    A modal will play in the event of a loss explaining to the user they have failed and what they did wrong using JS.  Two buttons allow the user to chose their next action try-again at same difficulty or close change difficulty.
+    On the event of a win the pop-up modal will inform you as such and button offer increase the difficulty or close to change difficulty.
+    -   #### Sequence (The Challenge)
+    Using the range slider a sensible difficulty can be selected, determining the length of the sequence, this is by default set to 2; the lowest difficulty.  Once start is pressed the pattern will play a random sequence of positions in the 3x3 and colors, with the tiles disabled during this pattern.  Once completed the tiles are re-activated and the user enters their guess.  
+    -   ### Paintbrushes
+    Color is a big part of the game, under the 3x3 grid the colors can be quickly selected so the user can match their guesses quickly.  A curent color area makes it easy to check what color is selected.
+    -   ### Tracking Progress
+    On the top left the current round and highest successful sequence are tracked by Js. 
 
-Another blue button should appear to click: _Open Browser_.
+-   ### Future Features 
+    In the future other cognitive challenges could be offerred with a central connecting navpage recording scores and enabling easy transition to challenges.  Also for this particulr game a removal of the colors could be added for a different experience and as an option for the colorblind.
 
-To run a backend Python file, type `python3 app.py`, if your Python file is named `app.py` of course.
+## Technologies Used
 
-A blue button should appear to click: _Make Public_,
 
-Another blue button should appear to click: _Open Browser_.
+### Languages Used
 
-In Gitpod you have superuser security privileges by default. Therefore you do not need to use the `sudo` (superuser do) command in the bash terminal in any of the lessons.
+1. [HTML5:](https://en.wikipedia.org/wiki/HTML5)
+   - HTML5 was used for the sturcture of the webpages.
+2. [CSS3:](https://en.wikipedia.org/wiki/Cascading_Style_Sheets)
+   - CSS3 was used for the styling and responsive elements.
+3. [JavaScript:](https://en.wikipedia.org/wiki/JavaScript)
+   - JavaScript was used for the games logic.
 
-To log into the Heroku toolbelt CLI:
+### Frameworks, Libraries & Programs Used
 
-1. Log in to your Heroku account and go to *Account Settings* in the menu under your avatar.
-2. Scroll down to the *API Key* and click *Reveal*
-3. Copy the key
-4. In Gitpod, from the terminal, run `heroku_config`
-5. Paste in your API key when asked
+1. [Bootstrap 4.5.2](https://getbootstrap.com/)
+   - Bootstrap was used for both the creation of the 3x3 challenge area as well as the top of the page with the start/stop button and the help and score areas.
+2. [Font Awesome](https://fontawesome.com/)
+   - Font Awesome was used adding icons for the info and paintprushes.
+4. [jQuery](https://jquery.com/)
+   - JQuery was used throughout the website for the interactive features.
+5. [Gitpod](https://www.gitpod.io/)
+    - Gitpod was used to write the code.
+6. [Git](https://git-scm.com/)
+    - Git was the version control system used for this project.
+7. [GitHub](https://github.com/)
+    - GitHub is used to store the project's code and any other required files.
+8. [Balsamiq](https://balsamiq.com/)
+    - Balsamiq was used to create the wireframes during the design phase of the project.
+9. [Ami.responsivedesign](http://ami.responsivedesign.is)
+    - Am I responsive site was used as a presentation aid in this readme file.
 
-You can now use the `heroku` CLI program - try running `heroku apps` to confirm it works. This API key is unique and private to you so do not share it. If you accidentally make it public then you can create a new one with _Regenerate API Key_.
+# Testing
+## User stories
+### Testing User Stories from User Experience (UX) Section
 
-------
+1. The site should be simple to understand and easy to engage with, even without detailed reading of the instructions.
 
-## Release History
+    - The initial pop-up dispays the instructions so the userknows what the game is about.  
+    - The minimalist design allows user to see the main elements of the game, leading to better understanding.
+    - Help is available on click so the instructions can be reconsulted.
+    - The start/stop button operates the game immediately so the user can learn through trial and error without punishment ingame or through time delay. 
+    - When a sequence is not started the user is still allowed to press the buttons for a colorful response allowing them to familiarize themselves with the setup.
 
-We continually tweak and adjust this template to help give you the best experience. Here is the version history:
+2. The content should meet the requierement of challenging a range of skill levels with a lower-end of difficulty that all will be able to perform and upper-end that only the best memory can meet.
 
-**September 1 2021:** Remove `PGHOSTADDR` environment variable.
+    - The difficulty slider allows for interactive selection of difficulty ranging from sequences of two (easy) to twelve(near impossible).  
+    - On page load the default difficulty is 2 allowing the user to succeed at these lower difficulty allows for everyone to come away with some sense of accomplishment.  These lower difficulties can also be completed by the most skilled individuals quickly, avoiding any frustration.
 
-**July 19 2021:** Remove `font_fix` script now that the terminal font issue is fixed.
+3. The atmosphere of the background and interactions should be undistracting and subdued, so that the user can stay focused and concentrate on the game 
 
-**July 2 2021:** Remove extensions that are not available in Open VSX.
+    - The site is minimalist with an off-white background allowing for easy viewing and avoiding any clutter that could distract the user from the challenge.
 
-**June 30 2021:** Combined the P4 and P5 templates into one file, added the uptime script. See the FAQ at the end of this file.
+4. The user will want unobtrusive confirmation of how they are performing and what they did right or wrong.
 
-**June 10 2021:** Added: `font_fix` script and alias to fix the Terminal font issue
+    - The user is informed of win or loss by modal pop-up only when the whole pattern is completed.
+    - The loss modal tells the user where they went wrong, with either the color or position or both.
+    - The slider updates on sucess so the user can visually see their progress through the levels as the go.
+    - The users best score is recorded in text at the top right corner so they know what to beat.
 
-**May 10 2021:** Added `heroku_config` script to allow Heroku API key to be stored as an environment variable.
+5. The user should not have to worry about causing a problem in game logic, while using the site.
 
-**April 7 2021:** Upgraded the template for VS Code instead of Theia.
+    - The user is not allowed to interfere when the pattern is playing, by accidental click or curiosity.  
+    - Testing of all the interactive features before, during and after sequence playing has been performed to ensure no accidental interference.
 
-**October 21 2020:** Versions of the HTMLHint, Prettier, Bootstrap4 CDN and Auto Close extensions updated. The Python extension needs to stay the same version for now.
+## User Feedback
 
-**October 08 2020:** Additional large Gitpod files (`core.mongo*` and `core.python*`) are now hidden in the Explorer, and have been added to the `.gitignore` by default.
+User feedback was given by my Mentor, family and friends they reported the following:
+-   Unclear the purpose of the game when initially started, this was remedied by launching the help modal at the start of the game.
+-   Prefer to start at a low difficulty (during testing the difficulty was set to 4), the default is now 2.
+-   Would like to visually see progess.  In response the slider was updated on each sucessful level-up.
 
-**September 22 2020:** Gitpod occasionally creates large `core.Microsoft` files. These are now hidden in the Explorer. A `.gitignore` file has been created to make sure these files will not be committed, along with other common files.
+## feature and Logic testing
 
-**April 16 2020:** The template now automatically installs MySQL instead of relying on the Gitpod MySQL image. The message about a Python linter not being installed has been dealt with, and the set-up files are now hidden in the Gitpod file explorer.
+-   The two primary places of testing were on developer tools on mozilla firefox and microsoft edge, using the element selector most positioning, margin and padding issues were tested here first.
+-   The Website was tested on Google Chrome, Internet Explorer, and Safari browsers also.
+-   The website was viewed on a variety of devices such as Desktop, Laptop, iPhone7, iPhone 8 & iPhoneX and resized from a large range of sizes in web developer tools to ensure responsive design across the board.
+-   A large amount of testing was done to ensure that all pages were linking correctly.
+-   logs in the console allowed for viewing of arrays and variables in developer tools to ensure the logic was performing correctly.
+-   Friends and family members were asked to review the site and documentation to point out any bugs and/or user experience issues.
 
-**April 13 2020:** Added the _Prettier_ code beautifier extension instead of the code formatter built-in to Gitpod.
+## Code validation
 
-**February 2020:** The initialisation files now _do not_ auto-delete. They will remain in your project. You can safely ignore them. They just make sure that your workspace is configured correctly each time you open it. It will also prevent the Gitpod configuration popup from appearing.
+- HTML
+    - My HTML files were checked using [W3C validator](https://validator.w3.org/#validate_by_uri) 
 
-**December 2019:** Added Eventyret's Bootstrap 4 extension. Type `!bscdn` in a HTML file to add the Bootstrap boilerplate. Check out the <a href="https://github.com/Eventyret/vscode-bcdn" target="_blank">README.md file at the official repo</a> for more options.
+    ![HTML validator](assets/readme-imgs/htmlvalidator.png)
 
-------
+- CSS
+    - My CSS files were checked using [W3C CSS validator](https://jigsaw.w3.org/css-validator/) 
 
-## FAQ about the uptime script
+    ![CSS validator](assets/readme-imgs/cssvalidator.png)
 
-**Why have you added this script?**
+- JavaScript
+    - My JS files were checked using [JS-hint](https://jshint.com/)
 
-It will help us to calculate how many running workspaces there are at any one time, which greatly helps us with cost and capacity planning. It will help us decide on the future direction of our cloud-based IDE strategy.
+    ![Java Script checker](assets/readme-imgs/jschecker.png)
+    Warning is necessary for game logic
 
-**How will this affect me?**
+# Bug Fixes and Problems Encountered
 
-For everyday usage of Gitpod, it doesn’t have any effect at all. The script only captures the following data:
+###  - Bug: 
+User could interfere with the played pattern.
+###  - Fix: 
+The solution was to remove the event listeners from the 3x3 squares and return them after the sequence had completed.  Ensuring attempts at the sequence cant be made during this stage.  This was performed by a loop acting on every square (included in the squares array).
+    
+    for (let i = 0; i < 9; i++) {  /*Prevents interference from user when pattern plays.*/
+        squares[i].removeEventListener("click", flashSquareClick);
+        squares[i].removeEventListener("click", UserAttempt);
+    }
+    createPattern();
+    triggerPattern();
 
-- An ID that is randomly generated each time the workspace is started.
-- The current date and time
-- The workspace status of “started” or “running”, which is sent every 5 minutes.
+    p = [];  //Array to hold timeout of reinitializing eventlisteners so they can be cancelled
+    for (let i = 0; i < 9; i++) {
+        p[i] = setTimeout(function () {
+            squares[i].addEventListener("click", flashSquareClick);
+            squares[i].addEventListener("click", UserAttempt);
+            }, 500*(difficulty+1)+(500*difficulty)-1000)  //Timeing allows for full pattern to play without interference
+    console.log(500*(difficulty+1)+(500*difficulty));
+    }
 
-It is not possible for us or anyone else to trace the random ID back to an individual, and no personal data is being captured. It will not slow down the workspace or affect your work.
+###  - Bug: 
+If the user clicked start/stop multiple times in quick succession several sequences would play.
+###  - Fix: 
+By adding a onclick function to the stop button that prevented all future flashes and cancelled the current flash.  This was achieved by clearing the timeout functions of the flashes.  The color background of the squares was also removed to stop the current flash.   This function was called stopFlash().  
 
-**So….?**
+    /*Cancels all flashes and prevents the sequence playing*/
+    function stopFlash() {
+        $(".square").removeClass("red_background").removeClass("green_background").removeClass("blue_background");  //Stopping current flash
+        for (let i = 0; i < difficulty; i++) {
+            clearTimeout(a[i]);  //Preventing adding color
+        }
+    }
 
-We want to tell you this so that we are being completely transparent about the data we collect and what we do with it.
+###  - Bug: 
+Event listeners applying at the wrong times
+###  - Fix: 
+By adding to the stopFlash() function all eventlisteners in timeouts could be turned so that a new sequence could trigger fully undisturbed.  
 
-**Can I opt out?**
+    function stopFlash() {
+        $(".square").removeClass("red_background").removeClass("green_background").removeClass("blue_background");  //Stopping current flash
+        for (let i = 0; i < difficulty; i++) {
+            clearTimeout(a[i]);  //Preventing adding color
+        }
+        for (let i = 0; i < difficulty; i++) { 
+            clearTimeout(b[i]);  //Preventing removing color
+        }
+        for (let i = 0; i < 9; i++) {
+            clearTimeout(p[i]);
+            squares[i].addEventListener("click", flashSquareClick); //reapply all squares clicking 
+            squares[i].addEventListener("click", UserAttempt);
+        }
+    }
 
-Yes, you can. Since no personally identifiable information is being captured, we'd appreciate it if you let the script run; however if you are unhappy with the idea, simply run the following commands from the terminal window after creating the workspace, and this will remove the uptime script:
+###  - Bug: 
+Slider was not presenting any information
+###  - Fix: 
+Adding a on input function and the this value, so a number would be presented beside the slider.
 
-```
-pkill uptime.sh
-rm .vscode/uptime.sh
-```
+    // Update the current slider value (each time you drag the slider handle)
+    slider.oninput = function() {
+        output.innerHTML = this.value;
+        difficulty = Number(this.value);
+    }
 
-**Anything more?**
+###  - Bug: 
+Modal needed launched onload
+###  - Fix: 
+The help and instruction modal needed launched onload, this was tried with .show() but this made the modal behave differently.  The solution was to use the .click() function instead.
 
-Yes! We'd strongly encourage you to look at the source code of the `uptime.sh` file so that you know what it's doing. As future software developers, it will be great practice to see how these shell scripts work.
+    //Pop-up help modal on launch
+    window.onload = document.getElementById('btno').click();
 
----
+###  - Bug: 
+Adding in difficulty 
+###  - Fix: 
+To add in difficulty throughout the game the variable difficulty had to be created as a Number() from the value of the slider.  This difficulty was then passed into for loops for generating the random sequences.  The Number() was important as some of the timeouts used maths operators to calculate the delay.
 
-Happy coding!
+    /* Creates random pattern and records it to lists*/
+    function createPattern() {
+        for (let i = 0; i < difficulty; i++) {
+            let randColor = colors[Math.floor(Math.random() * 3)];
+
+            colorSequence.push(randColor);
+        }
+        console.log(colorSequence);
+        for (let i = 0; i < difficulty; i++) {
+            let randtile = Math.floor(Math.random() * 9);
+
+            squareSequence.push(randtile);
+        console.log(squareSequence);
+        } 
+    }
+
+###  - Current Bug: 
+Delay inaccuracy
+###  - Fix: 
+During the timeout for re-adding the eventlisteners a calculation is performed using the Number(difficulty) variable this delay although technically equal to the needed delay doesn't manifest when the game operates.  The tiles remain inactive for a second after the sequence finishes.  This can be very off-putting for user experience, as the user has spent time rememberring the pattern and when the first click is made it doesn't work.  To air on the safe side a second was taken off the timeout (see the -1000 in code) to ensure when the user clicked they would be able to make their first guess.
+
+    for (let i = 0; i < 9; i++) {
+        p[i] = setTimeout(function () {
+            squares[i].addEventListener("click", flashSquareClick);
+            squares[i].addEventListener("click", UserAttempt);
+            }, 500*(difficulty+1)+(500*difficulty)-1000)  //Timeing allows for full pattern to play without interference
+    console.log(500*(difficulty+1)+(500*difficulty));
+    }
+
+
+# Deployment
+
+## Initial Deployment
+
+1.  Logging into my GitHub account and clickng the green button near the top left of the page displaying the text NEW.
+This took me to a page with the option to create a new repository. 
+2. Under repository template I clicked on the code institute template. I chose a name for the repository suitable for the project and then clicked the create repository button.
+3. I opened the new repository and clciked on the green gitpod button to open the workspace for writing and editing my code to develop the site.
+## GitHub Pages
+
+The project was deployed to GitHub Pages using the following steps:
+
+1.  Logged in to GitHub and clicked on the relelavant [GitHub Repository](https://github.com/Jason-Philip/ColorMemoryGame).
+2.  Found "Settings" button at the top of the repository.
+3.  Scrolled down to the "Pages" section.
+4.  In the source dropdown menu select "master".
+5.  saved and refreshed.
+6.  A message appeared giving a link to the launched site.
+
+## Forking the GitHub repository
+
+If the GitHub Repository needs forked use the following:
+
+1.  In GitHub locate the correct repository.
+2.  At the top-right among the three buttons, click the "Fork" Button which is the furthest right.
+3.  A copy of the original repository will now be in your account.
+
+More information about forking a GitHub repository is [here](https://docs.github.com/en/github/getting-started-with-github/fork-a-repo).
+
+## Making a Local Clone
+
+For creating a local clone of the repository, do the following:
+
+1.  Log in to GitHub and locate the project's [GitHub Repository](https://github.com/Jason-Philip/ColorMemoryGame).
+2.  Under the repository name, find and click the "Code" button this will bring up a drop-down area.
+3.  To clone the repository using HTTPS, under "Clone with HTTPS", click the clipboard button to copy the repository URL.
+    To clone using SSH click "Use SSH" and then click the clipboard button.
+4.  Open Git Bash
+5.  Change the current working directory to the location where you want to store the cloned repository.
+6.  Type `git clone` and then paste the URL you copied in Step 3.
+
+3.  Alternatively a zip can be downloaded and extracted and saved locally.
+
+
+More information about making a local clone of a GitHub repository is [here](https://docs.github.com/en/github/creating-cloning-and-archiving-repositories/cloning-a-repository).
+
+
+# Credits
+
+### Code
+
+-   The README.md is based off a template from code Institute.
+
+-   [Bootstrap4](https://getbootstrap.com/docs/4.4/getting-started/introduction/): Bootstrap Library used throughout the project mainly to make site responsive using the Bootstrap Grid System.
+
+-   [W3schools](https://www.w3schools.com/) : Was used in part to create the modal using JavaScript.  Tutorial Found [Here](https://www.w3schools.com/howto/howto_css_modals.asp#:~:text=%20How%20To%20Create%20a%20Modal%20Box%20,fixed%3B%207%20Step%203%29%20Add%20JavaScript%3A%20More%20)
+
+- [Slack](https://slack.com/intl/en-gb/) : 
+
+    - The community on slack was greatly helpful with the development ideas and answering coding related questions as well as demonstrating how to properly structure the writing of the code and the ReadMe.
+
+### Content
+
+-   Inspiration for the idea came from [Human Benchmark](https://humanbenchmark.com/), who have many iteresting challenges and cognitive tests. 
+
+### Acknowledgements
+
+-   My Mentor for helpful feedback.
+
+-   Tutor support at Code Institute for their support.
+
+-   Student care for keeping in touch about deadlines.
+
+-   Family and friends for user feedback.
