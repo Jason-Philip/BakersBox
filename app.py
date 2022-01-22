@@ -22,7 +22,7 @@ mongo = PyMongo(app)
 @app.route("/testing")
 def testing():
     testing = mongo.db.test1.find()
-    return render_template("base.html", testing=testing) 
+    return render_template("home.html", testing=testing) 
 
 if __name__ == "__main__":
     app.run(host=os.environ.get("IP"),
