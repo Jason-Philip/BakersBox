@@ -18,25 +18,25 @@
         <!-- top navbar -->
 		<nav class="nav-extended">
 			<div class="nav-wrapper">
-				<a href="#" class="brand-logo baking">The Baking Box</a>
+				<a href="{{ url_for('home') }}" class="brand-logo baking">The Baking Box</a>
 				<a href="#" data-target="mobile-demo" class="sidenav-trigger right"><i class="fas fa-bars"></i></a>
 				<ul class="right hide-on-med-and-down">
-					<li><a href="#">Home</a></li>
+					<li><a href="{{ url_for('home') }}">Home</a></li>
                     <li><a href="#">My Baking Box</a></li>
                     <li><a href="#">Find a Bake</a></li>
-                    <li><a href="#">Login</a></li>
-                    <li><a href="#">Register</a></li>
+                    <li><a href="{{ url_for('login') }}">Login</a></li>
+                    <li><a href="{{ url_for('register') }}">Register</a></li>
 				</ul>
 			</div>
 		</nav>
         <!-- mobile hamburger -->
 		<ul class="sidenav" id="mobile-demo">
             <li><h4>The Baking Box</h4></li>
-            <li><a href="#">Home</a></li>
+            <li><a href="{{ url_for('home') }}">Home</a></li>
             <li><a href="#">My Baking Box</a></li>
             <li><a href="#">Find a Bake</a></li>
-            <li><a href="#">Login</a></li>
-            <li><a href="#">Register</a></li>
+            <li><a href="{{ url_for('login') }}">Login</a></li>
+            <li><a href="{{ url_for('register') }}">Register</a></li>
 		</ul>
 	</header>
 
@@ -51,7 +51,7 @@
         <hr>
         <div class="row">
             <div class="col l4 m12 s12">
-                <a href="#">
+                <a href="{{ url_for('home') }}">
                     <h3 class="baking">The Baking Box</h3>
                     <p id="footer_support">Find Your favourite bakes and share your own!</p>
                 </a>
