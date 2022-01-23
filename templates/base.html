@@ -24,7 +24,7 @@
                     <li><a href="{{ url_for('home') }}">Home</a></li>
                     <li><a href="#">Find a Bake</a></li>
                     {% if session.user %}
-                        <li><a href="#">My Baking Box</a></li>
+                        <li><a href="{{ url_for('profile', name=session['user']) }}">My Baking Box</a></li>
                         <li><a href="{{ url_for('logout') }}">Logout</a></li>
                     {% else %}
                         <li><a href="{{ url_for('login') }}">Login</a></li>
@@ -36,7 +36,7 @@
         <!-- mobile hamburger -->
 		<ul class="sidenav" id="mobile-demo">
             <li><a href="{{ url_for('home') }}">Home</a></li>
-            <li><a href="#">Find a Bake</a></li>
+            <li><a href="{{ url_for('profile', name=session['user']) }}">Find a Bake</a></li>
             {% if session.user %}
                 <li><a href="#">My Baking Box</a></li>
                 <li><a href="{{ url_for('logout') }}">Logout</a></li>
