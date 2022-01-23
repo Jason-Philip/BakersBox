@@ -27,24 +27,33 @@ def home():
 @app.route("/register", methods=["GET", "POST"])
 def register():
     if request.method == "POST":
-        # check if username already exists in db
+        # check if email already exists in db
         existing_user = mongo.db.users.find_one(
-            {"username": request.form.get("username").lower()})
+            {"email": request.form.get("email").lower()})
 
         if existing_user:
-            flash("Username already exists")
+            flash("Email already Used")
+            return redirect(url_for("register"))
+        
+        # check passwords are the same
+        password = request.form.get("password")
+        confirm_password = request.form.get("confirm_password")
+        if password != confirm_password:
+            flash("Passwords did not match, please try again")
             return redirect(url_for("register"))
 
         register = {
-            "username": request.form.get("username").lower(),
+            "email": request.form.get("email").lower(),
+            "name": request.form.get("name"),
             "password": generate_password_hash(request.form.get("password"))
+
         }
         mongo.db.users.insert_one(register)
 
         # put the new user into 'session' cookie
-        session["user"] = request.form.get("username").lower()
+        session["user"] = request.form.get("name")
         flash("Registration Successful!")
-        return redirect(url_for("profile", username=session["user"]))
+        return redirect(url_for("profile", name=session["user"]))
 
     return render_template("register.html")
 
@@ -78,14 +87,14 @@ def login():
     return render_template("login.html")
 
 
-@app.route("/profile/<username>", methods=["GET", "POST"])
-def profile(username):
+@app.route("/profile/<name>", methods=["GET", "POST"])
+def profile(name):
     # grab the session user's username from db
     username = mongo.db.users.find_one(
-        {"username": session["user"]})["username"]
+        {"name": session["user"]})["name"]
 
     if session["user"]:
-        return render_template("profile.html", username=username)
+        return render_template("my_box.html", username=username)
 
     return redirect(url_for("login"))
 
