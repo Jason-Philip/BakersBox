@@ -40,6 +40,18 @@
 		</ul>
 	</header>
 
+    <div> <!--Adding space underneath navbar to display flashing messages-->
+        {% with messages = get_flashed_messages() %}
+        {% if messages %}
+        {% for message in messages %}
+        <div class="row flashes">
+            <h4 class="col green-gradient black-text center-align s12 m8 offset-m2"> {{ message }} </h4>
+        </div>
+        {% endfor %}
+        {% endif %}
+        {% endwith %}
+    </div>
+
     <main class="container">
         {% block content %}
         
