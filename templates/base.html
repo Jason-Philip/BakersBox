@@ -7,6 +7,9 @@
         integrity="sha512-xA6Hp6oezhjd6LiLZynuukm80f8BoZ3OpcEYaqKoCV3HKQDrYjDE1Gu8ocxgxoXmwmSzM4iqPvCsOkQNiu41GA==" crossorigin="anonymous" type="text/css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" type="text/css">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}" type="text/css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Indie+Flower&display=swap" rel="stylesheet"> 
     <title>The Baking Box</title>
 </head>
 <body>
@@ -15,7 +18,7 @@
         <!-- top navbar -->
 		<nav class="nav-extended">
 			<div class="nav-wrapper">
-				<a href="#" class="brand-logo">The Baking Box</a>
+				<a href="#" class="brand-logo baking">The Baking Box</a>
 				<a href="#" data-target="mobile-demo" class="sidenav-trigger right"><i class="fas fa-bars"></i></a>
 				<ul class="right hide-on-med-and-down">
 					<li><a href="#">Home</a></li>
@@ -47,26 +50,26 @@
 
         <hr>
         <div class="row">
-            <div class="col m4 s12">
+            <div class="col l4 m12 s12">
                 <a href="#">
-                    <h3>The Baking Box</h3>
-                    <p>Find Your favourite bakes and share your own!</p>
+                    <h3 class="baking">The Baking Box</h3>
+                    <p id="footer_support">Find Your favourite bakes and share your own!</p>
                 </a>
             </div>
-            <div class="col m4 s12">
-                <p>Social</p>
+            <div class="col l4 m6 s12">
+                <p class="footer_head">Social</p>
                 <a href="http://www.facebook.com" target="_blank" aria-label="Open Facebook on New Page">
-                    <i class="fab fa-facebook"></i>
+                    <i class="fab fa-facebook fa-2x"></i>
                 </a>
                 <a href="http://www.twitter.com" target="_blank" aria-label="Open Twitter on New Page">
-                    <i class="fab fa-twitter"></i>
+                    <i class="fab fa-twitter fa-2x"></i>
                 </a>
                 <a href="http://www.instagram.com" target="_blank" aria-label="Open Instagram on New Page">
-                    <i class="fab fa-instagram"></i>
+                    <i class="fab fa-instagram fa-2x"></i>
                 </a>
             </div>
-            <div class="col m4 s12">
-                <p>get in Contact</p>
+            <div class="col l4 m6 s12">
+                <p class="footer_head">get in Contact</p>
                 <p>TheBakingBox@gmail.com</p>
             </div>
         </div>

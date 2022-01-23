@@ -1,5 +1,5 @@
 /*Base Template styling*/
-nav {
+nav, footer{
     background-color: #e37564;
 }
 
@@ -19,6 +19,22 @@ main {
     min-width: 100vw;
 }
 
+footer, #footer_support {
+    text-align: center;
+    color: white;
+    font-size: 22px;
+}
+
+.footer_head {
+    font-size: 28px;
+}
+
+i {
+    margin: 15px;
+    margin-top: 0%;
+    color:rgb(151, 216, 221);
+}
+
 #home_writing_background {
     background-color: pink;
     opacity: 0.6;
@@ -35,7 +51,9 @@ main {
 }
 
 .baking {
-    font-size: 45px;
+    font-family: 'Indie Flower', cursive;
+    font-size: 55px;
+    color: white;
 }
 
 .category {
@@ -56,7 +74,13 @@ img {
 }
 
 .categories {
-    margin-top: 30px;
+    padding-top: 30px;
+    margin-bottom: 0;
+    background-color: #acd1ca;
+}
+
+hr {
+    margin: 0;
 }
 
 #categories_heading {
