@@ -4,18 +4,18 @@
 
 
     <div class="row">
-        <div class = "col s12 m8 offset-m2">
+        <div class = "col s12 l8 offset-l2 m10 offset-m1">
             <div class="row">
                 <!--Left Register header and Explaination and offer to login if already registerred-->
-                <div class="col s4">
+                <div class="col s12 m4">
                     <h3>Register</h3>
-                    <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Reiciendis excepturi numquam tempora laudantium accusamus minima sint neque, officiis quos obcaecati cum ea dolores animi repudiandae provident porro voluptas illum assumenda.</p>
+                    <p>Get access to your own personal Baking Bodx where you can store your recipes and add to the community collection!!</p>
                     <p class="center-align">
                         Already Registered?
                         <a href="{{ url_for('login') }}" class="light-blue-text text-darken-4">Log In</a>
                     </p>
                 </div>
-                <form class="col s8" method="POST" action="{{ url_for('register') }}">
+                <form class="col s12 m8" method="POST" action="{{ url_for('register') }}">
                     <div class="card-panel">
                         <!-- name -->
                         <div class="row">

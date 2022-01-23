@@ -109,3 +109,7 @@ hr {
     } 
 }
 
+/*Styling for the register and sign in pages*/
+.btn {
+    background-color: #e37564;
+}
