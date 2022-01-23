@@ -34,6 +34,14 @@ def register():
         if existing_user:
             flash("Email already Used")
             return redirect(url_for("register"))
+
+        # check if name already exists in db
+        existing_user = mongo.db.users.find_one(
+            {"name": request.form.get("name").lower()})
+
+        if existing_user:
+            flash("Name already Used")
+            return redirect(url_for("register"))
         
         # check passwords are the same
         password = request.form.get("password")
@@ -44,7 +52,7 @@ def register():
 
         register = {
             "email": request.form.get("email").lower(),
-            "name": request.form.get("name"),
+            "name": request.form.get("name").lower(),
             "password": generate_password_hash(request.form.get("password"))
 
         }
@@ -63,17 +71,17 @@ def login():
     if request.method == "POST":
         # check if username exists in db
         existing_user = mongo.db.users.find_one(
-            {"username": request.form.get("username").lower()})
+            {"name": request.form.get("name").lower()})
 
         if existing_user:
             # ensure hashed password matches user input
             if check_password_hash(
                     existing_user["password"], request.form.get("password")):
-                        session["user"] = request.form.get("username").lower()
+                        session["user"] = request.form.get("name").lower()
                         flash("Welcome, {}".format(
-                            request.form.get("username")))
+                            request.form.get("name")))
                         return redirect(url_for(
-                            "profile", username=session["user"]))
+                            "profile", name=session["user"]))
             else:
                 # invalid password match
                 flash("Incorrect Username and/or Password")
@@ -90,11 +98,8 @@ def login():
 @app.route("/profile/<name>", methods=["GET", "POST"])
 def profile(name):
     # grab the session user's username from db
-    username = mongo.db.users.find_one(
-        {"name": session["user"]})["name"]
-
     if session["user"]:
-        return render_template("my_box.html", username=username)
+        return render_template("my_box.html", username=name)
 
     return redirect(url_for("login"))
 
