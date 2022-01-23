@@ -11,7 +11,7 @@ nav {
     background-repeat: no-repeat;
     background-size: cover;
     display: flex;
-    min-height: 100vh;
+    min-height: 120vh;
     flex-direction: column;
 }
 
@@ -36,6 +36,32 @@ main {
 
 .baking {
     font-size: 45px;
+}
+
+.category {
+    height: 280px;
+    text-align: center;
+}
+
+.cat_heading {
+    font-size: 20px;
+    margin-top: 10px;
+}
+
+img {
+    height: 80%;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.categories {
+    margin-top: 30px;
+}
+
+#categories_heading {
+    text-align: center;
+    font-size: 26px;
 }
 
 /*changing home page items for smaller sizes*/
