@@ -113,3 +113,9 @@ hr {
 .btn {
     background-color: #e37564;
 }
+
+/*Styling the My Baking Box*/
+/*Fixing the location of the plus*/
+#off_plus {
+    margin: 0%;
+}
