@@ -19,8 +19,11 @@
                     {% for recipe in own_recipes %}
                         <div class="collapsible-body">
                             <a href="{{ url_for('recipe_view', recipe_id=recipe._id) }}">{{ recipe.recipe_name.capitalize() }}</a>
-                            <a href="#"  class="red_minus btn btn-large waves-effect waves-light red" id>
-                                <i id="off_minus" class="fas fa-minus"></i>
+                            <a href="#"  class="red_trash btn btn-large waves-effect waves-light red" id>
+                                <i id="off_trash" class="fas fa-trash"></i>
+                            </a>
+                            <a href="#"  class="red_trash btn btn-large waves-effect waves-light orange" id>
+                                <p class="off_text">Edit</p>
                             </a>
                         </div>
                     {% endfor %}
