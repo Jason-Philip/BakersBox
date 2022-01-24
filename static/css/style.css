@@ -116,10 +116,23 @@ hr {
 
 /*Styling the My Baking Box*/
 /*Fixing the location of the plus*/
-#off_plus {
+#off_plus{
     margin: 0%;
 }
 
+#off_minus {
+    margin: 0%;
+    margin-left: -10px;
+}
+
+.red_minus {
+    height: 50px;
+    width: 20px;
+    margin-top: -15px;
+    float: inline-end;
+}
+
+/*Styling for the search area*/
 .search_results {
     width: 100%;
     height: 20vh;
