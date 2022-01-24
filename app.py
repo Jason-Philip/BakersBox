@@ -53,8 +53,10 @@ def register():
         register = {
             "email": request.form.get("email").lower(),
             "name": request.form.get("name").lower(),
-            "password": generate_password_hash(request.form.get("password"))
-
+            "password": generate_password_hash(request.form.get("password")),
+            "own_recipes": [],
+            "planned_recipes": [],
+            "tried_recipes": []
         }
         mongo.db.users.insert_one(register)
 
@@ -112,9 +114,25 @@ def logout():
     return redirect(url_for("login"))
 
 
-@app.route("/create_recipe")
+@app.route("/create_recipe", methods=["GET", "POST"])
 def create_recipe():
+    if request.method == "POST":
+    #create new recipe
+        new_recipe = {
+            "recipe_name": request.form.get("recipe_name").lower(),
+            "prep": request.form.get("prep"),
+            "cook_time": request.form.get("cook_time"),
+            "serves": request.form.get("serves"),
+            "cals": request.form.get("cals"),
+            "vegan": request.form.get("vegan"),
+            "ingredients": request.form.get("ingredients"),
+            "steps": request.form.get("steps"),
+            "added_by": session["user"]
+        }
+        mongo.db.recipes.insert_one(new_recipe)
+        return redirect(url_for("profile", name=session["user"]))
     return render_template("create_recipe.html")
+
 
 if __name__ == "__main__":
     app.run(host=os.environ.get("IP"),
