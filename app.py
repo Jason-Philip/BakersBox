@@ -190,7 +190,6 @@ def search():
     category by dropdown selection, all
     bakes will be displayed underneath otherwise
     """
-    query = request.form.get("query")
     recipes = list(mongo.db.recipes.find())
     # checks if user is logged in.
     if "user" in session:
@@ -200,6 +199,22 @@ def search():
             user=user)
 
     return render_template("search.html", recipes=recipes)
+
+
+@app.route("/edit_recipe/<recipe_id>", methods=["GET", "POST"])
+def edit_recipe(recipe_id):
+    """
+    Similar to the create recipe form but updates for 
+    an existing recipe.
+    """
+    if "user" in session:
+        # Set out unique properties
+        recipe = mongo.db.recipes.find_one({"_id": ObjectId(recipe_id)})
+        user = mongo.db.users.find_one({"name": session["user"]})
+
+        return render_template("edit_recipe.html", recipe=recipe,
+            user=user)
+
 
 
 if __name__ == "__main__":

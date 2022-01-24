@@ -22,7 +22,7 @@
                             <a href="#"  class="red_trash btn btn-large waves-effect waves-light red" id>
                                 <i id="off_trash" class="fas fa-trash"></i>
                             </a>
-                            <a href="#"  class="red_trash btn btn-large waves-effect waves-light orange" id>
+                            <a href="{{ url_for('edit_recipe', recipe_id=recipe._id) }}"  class="red_trash btn btn-large waves-effect waves-light orange" id>
                                 <p class="off_text">Edit</p>
                             </a>
                         </div>
