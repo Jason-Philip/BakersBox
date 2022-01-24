@@ -205,7 +205,8 @@ def search():
 def edit_recipe(recipe_id):
     """
     Similar to the create recipe form but updates for 
-    an existing recipe.
+    an existing recipe replacing old content
+    with new.
     """
     if "user" in session:
         # Set out unique properties
@@ -229,6 +230,20 @@ def edit_recipe(recipe_id):
 
             return redirect(url_for("profile", name=session["user"])) 
         return render_template("edit_recipe.html", recipe=recipe, user=user)
+
+
+@app.route("/delete_recipe/<recipe_id>", methods=["GET", "POST"])
+def delete_recipe(recipe_id):
+    if "user" in session:
+        # Set out unique properties
+        user = mongo.db.users.find_one({"name": session["user"]})
+        recipe = mongo.db.recipes.find_one({"_id": ObjectId(recipe_id)})
+
+        mongo.db.recipes.remove({"_id": ObjectId(recipe_id)})
+
+        mongo.db.users.update_one(user, {"$pull": {"own_recipes": str(recipe["_id"])}})
+
+        return redirect(url_for("profile", name=session["user"])) 
 
 
 if __name__ == "__main__":
