@@ -1,5 +1,20 @@
 {% extends "base.html" %}
 {% block content %}
 
+    <h3 class="text_center">Search Our Baking Collection</h3>
+
+    <div class = "row">
+        <div class="col s12 l8 offset-l2 m10 offset-m1">
+            <div class="row">
+                {% for recipe in recipes %}
+                    <div class="col s12 m6 l3">
+                        <div class="container search_results text_center">
+                            <a href="{{ url_for('recipe_view', recipe_id=recipe._id) }}">{{ recipe.recipe_name.capitalize() }}</a>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
 
 {% endblock %}

@@ -119,3 +119,12 @@ hr {
 #off_plus {
     margin: 0%;
 }
+
+.search_results {
+    width: 100%;
+    height: 20vh;
+}
+
+.text_center {
+    text-align: center;
+}
