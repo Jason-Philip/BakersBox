@@ -21,11 +21,17 @@ mongo = PyMongo(app)
 @app.route("/")
 @app.route("/home")
 def home():
+    """
+    Displays the home page
+    """
     return render_template("home.html") 
 
 
 @app.route("/register", methods=["GET", "POST"])
 def register():
+    """
+    Registers a new user if both email and name are unique
+    """
     if request.method == "POST":
         # check if email already exists in db
         existing_user = mongo.db.users.find_one(
@@ -70,6 +76,9 @@ def register():
 
 @app.route("/login", methods=["GET", "POST"])
 def login():
+    """
+    Allows a registerred user to login if valid and will prevent if not
+    """
     if request.method == "POST":
         # check if username exists in db
         existing_user = mongo.db.users.find_one(
@@ -99,6 +108,9 @@ def login():
 
 @app.route("/profile/<name>", methods=["GET", "POST"])
 def profile(name):
+    """
+    Displays the personalised content of the user for them to interact with
+    """
     # grab the session user's username from db
     if session["user"]:
         recipes = list(mongo.db.recipes.find())
@@ -119,7 +131,9 @@ def profile(name):
 
 @app.route("/logout")
 def logout():
-    # remove user from session cookie
+    """
+    Removes user from session cookie
+    """
     flash("You have been logged out")
     session.pop("user")
     return redirect(url_for("login"))
@@ -127,6 +141,9 @@ def logout():
 
 @app.route("/create_recipe", methods=["GET", "POST"])
 def create_recipe():
+    """
+    Creates a new recipes and adds the recipe to users owned recipes array
+    """
     if request.method == "POST":
         user = mongo.db.users.find_one({"name": session["user"]})
         #create new recipe
@@ -148,6 +165,14 @@ def create_recipe():
 
         return redirect(url_for("profile", name=session["user"]))
     return render_template("create_recipe.html")
+
+
+@app.route("/recipe", methods=["GET", "POST"])
+def recipe_view():
+    """
+    Displays a unique recipe for viewing.
+    """
+    return render_template("recipe.html")
 
 
 if __name__ == "__main__":
