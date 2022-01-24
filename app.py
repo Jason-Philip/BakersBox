@@ -167,12 +167,17 @@ def create_recipe():
     return render_template("create_recipe.html")
 
 
-@app.route("/recipe", methods=["GET", "POST"])
-def recipe_view():
+@app.route("/recipe_view/<recipe_id>", methods=["GET", "POST"])
+def recipe_view(recipe_id):
     """
     Displays a unique recipe for viewing.
-    """
-    return render_template("recipe.html")
+    """ 
+    if "user" in session:
+        # Set out unique properties
+        recipe = mongo.db.recipes.find_one({"_id": ObjectId(recipe_id)})
+        user = mongo.db.users.find_one({"name": session["user"]})
+    
+    return render_template("recipe.html", recipe=recipe)
 
 
 if __name__ == "__main__":

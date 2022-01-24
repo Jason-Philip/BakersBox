@@ -17,7 +17,7 @@
                 <li>
                     <div class="collapsible-header">Your Own Recipes</div>
                     {% for recipe in own_recipes %}
-                        <div class="collapsible-body"><span>{{ recipe.recipe_name.capitalize() }}</span></div>
+                        <div class="collapsible-body"><a href="{{ url_for('recipe_view', recipe_id=recipe._id) }}">{{ recipe.recipe_name.capitalize() }}</a></div>
                     {% endfor %}
                     <div class="collapsible-body"><a href="{{ url_for('create_recipe') }}" class="btn-floating btn-large waves-effect waves-light green"><i id="off_plus" class="fas fa-plus"></i></a>&emsp; Add a new Recipe</div>
                 </li>
