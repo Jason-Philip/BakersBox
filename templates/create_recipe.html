@@ -1,0 +1,68 @@
+{% extends "base.html" %}
+{% block content %}
+
+<h3 class="center-align"> Recipe Creation </h3>
+
+<div class="row center-align">
+    <form class="col s12 m6 offset-m3" method="POST" action="{{ url_for('create_recipe') }}">
+        <div class="row">
+            <div class="input-field col s12 ">
+                <input id="recipe_name" name="recipe_name" type="text" maxlength="50" pattern="^[a-zA-Z0-9_-\s]{1,50}$" class="validate" required>
+                <label for="recipe_name">Recipe Name</label>
+            </div>
+        </div>
+        <div class="row">
+            <div class="input-field col s6 ">
+                <input id="prep" name="prep" type="text" maxlength="30" pattern="^[0-9]{1,20}$" class="validate" required>
+                <label for="prep">Preperation Time</label>
+            </div>
+
+            <div class="input-field col s6 ">
+                <input id="cook_time" name="cook_time" type="text" maxlength="4" pattern="[0-9]{1,20}" class="validate" required>
+                <label for="cook_time">Cooking Time</label>
+            </div>
+
+            <div class="input-field col s6 ">
+                <input id="serves" name="serves" type="text" maxlength="4" pattern="[0-9]{4}" class="validate" required>
+                <label for="serves">Serves</label>
+            </div>
+
+            <div class="input-field col s6 ">
+                <input id="cals" name="cals" type="text" maxlength="4" pattern="[0-9]{4}" class="validate" required>
+                <label for="cals">Calories per portion</label>
+            </div>
+        </div>
+        <div class="row"><!--Alterred version of radio buttons on Materialize-->
+            <p>Vegan?</p>
+            <p>
+                <label> 
+                    <input id="vegan_no" name="vegan" type="radio">
+                    <span>Yes</span>
+                </label>
+            </p>
+            <p>
+                <label>
+                    <input id="vegan_yes" name="vegan" type="radio" checked>
+                    <span>No</span>
+                </label>
+            </p>
+        </div>
+        <div class="row">
+            <div class="input-field col s12 ">
+                <textarea id="ingredients" name="ingredients" minlength="15" pattern="^[a-zA-Z0-9_-]$" class="materialize-textarea" required></textarea>
+                <label for="ingredients">Ingredients</label>
+            </div>
+        </div>
+        <div class="row">
+            <div class="input-field col s12 ">
+                <textarea id="steps" name="steps" minlength="15" pattern="^[a-zA-Z0-9_-]$" class="materialize-textarea" required></textarea>
+                <label for="steps">Steps</label>
+            </div>
+        </div>
+        <button class="btn" type="submit" name="action">Add Recipe
+            <i class="fas fa-plus"></i>
+        </button>
+    </form>
+</div>
+
+{% endblock %}
