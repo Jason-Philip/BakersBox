@@ -77,10 +77,11 @@ def register():
 @app.route("/login", methods=["GET", "POST"])
 def login():
     """
-    Allows a registerred user to login if valid and will prevent if not
+    Allows a registerred user to login 
+    if valid and will prevent if not
     """
     if request.method == "POST":
-        # check if username exists in db
+        # check if name exists in db
         existing_user = mongo.db.users.find_one(
             {"name": request.form.get("name").lower()})
 
@@ -99,7 +100,7 @@ def login():
                 return redirect(url_for("login"))
 
         else:
-            # username doesn't exist
+            # name doesn't exist
             flash("Incorrect Username and/or Password")
             return redirect(url_for("login"))
 
@@ -109,7 +110,8 @@ def login():
 @app.route("/profile/<name>", methods=["GET", "POST"])
 def profile(name):
     """
-    Displays the personalised content of the user for them to interact with
+    Displays the personalised content 
+    of the user for them to interact with
     """
     # grab the session user's username from db
     if session["user"]:
@@ -142,7 +144,8 @@ def logout():
 @app.route("/create_recipe", methods=["GET", "POST"])
 def create_recipe():
     """
-    Creates a new recipes and adds the recipe to users owned recipes array
+    Creates a new recipes and 
+    adds the recipe to users owned recipes array
     """
     if request.method == "POST":
         user = mongo.db.users.find_one({"name": session["user"]})
@@ -178,6 +181,25 @@ def recipe_view(recipe_id):
         user = mongo.db.users.find_one({"name": session["user"]})
     
     return render_template("recipe.html", recipe=recipe)
+
+
+@app.route("/search", methods=["GET", "POST"])
+def search():
+    """ 
+    User can choose to search by name or by
+    category by dropdown selection, all
+    bakes will be displayed underneath otherwise
+    """
+    query = request.form.get("query")
+    recipes = list(mongo.db.recipes.find())
+    # checks if user is logged in.
+    if "user" in session:
+        user = mongo.db.users.find_one(
+            {"name": session["user"]})
+        return render_template("search.html", recipes=recipes,
+            user=user)
+
+    return render_template("search.html", recipes=recipes)
 
 
 if __name__ == "__main__":
