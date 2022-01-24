@@ -212,9 +212,23 @@ def edit_recipe(recipe_id):
         recipe = mongo.db.recipes.find_one({"_id": ObjectId(recipe_id)})
         user = mongo.db.users.find_one({"name": session["user"]})
 
-        return render_template("edit_recipe.html", recipe=recipe,
-            user=user)
+        if request.method == "POST":
+            updated = {
+                "recipe_name": request.form.get("recipe_name").lower(),
+                "prep": request.form.get("prep"),
+                "cook_time": request.form.get("cook_time"),
+                "serves": request.form.get("serves"),
+                "cals": request.form.get("cals"),
+                "vegan": request.form.get("vegan"),
+                "ingredients": request.form.get("ingredients"),
+                "steps": request.form.get("steps"),
+                "added_by": session["user"]
+            }
+            mongo.db.recipes.update(recipe, updated)
+            flash("Recipe Has Been Editted Successfully")
 
+            return redirect(url_for("profile", name=session["user"])) 
+        return render_template("edit_recipe.html", recipe=recipe, user=user)
 
 
 if __name__ == "__main__":

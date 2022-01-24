@@ -37,27 +37,27 @@
             {% if recipe.vegan == "on" %} <!--Allows radio to be correctly checked-->
                 <p>
                     <label> 
-                        <input id="no" name="vegan" type="radio" checked>
-                        <span>Yes</span>
-                    </label>
-                </p>
-                <p>
-                    <label>
-                        <input id="yes" name="vegan" type="radio">
-                        <span>No</span>
-                    </label>
-                </p>
-            {% else %}
-                <p>
-                    <label> 
                         <input id="no" name="vegan" type="radio">
-                        <span>Yes</span>
+                        <span>No</span>
                     </label>
                 </p>
                 <p>
                     <label>
                         <input id="yes" name="vegan" type="radio" checked>
+                        <span>Yes</span>
+                    </label>
+                </p>
+            {% else %}
+                <p>
+                    <label> 
+                        <input id="no" name="vegan" type="radio" checked>
                         <span>No</span>
+                    </label>
+                </p>
+                <p>
+                    <label>
+                        <input id="yes" name="vegan" type="radio">
+                        <span>Yes</span>
                     </label>
                 </p>
             {% endif %}
