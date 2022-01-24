@@ -241,7 +241,8 @@ def delete_recipe(recipe_id):
 
         mongo.db.recipes.remove({"_id": ObjectId(recipe_id)})
 
-        mongo.db.users.update_one(user, {"$pull": {"own_recipes": str(recipe["_id"])}})
+        mongo.db.users.update_one(user, {"$pull": 
+            {"own_recipes": str(recipe["_id"])}})
 
         return redirect(url_for("profile", name=session["user"])) 
 
