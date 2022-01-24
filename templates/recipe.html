@@ -1,6 +1,29 @@
 {% extends "base.html" %}
 {% block content %}
 
-<h1>{{recipe.recipe_name}}</h1>
+<div class="row">
+    <div class="col s12 l8 offset-l2 m10 offset-m1">
+        <div class="row">
+            <div class="col s12">
+                <h2>{{recipe.recipe_name}}</h2>
+                <p>Recipe by {{recipe.added_by}}</p>
+                <ul>
+                    <li>Preperation Time: {{recipe.prep}}mins</li>
+                    <li>Cooking Time: {{recipe.cook_time}}mins</li>
+                    <li>Serves: {{recipe.serves}}</li>
+                    <li>{{recipe.cals}} Calories per person</li>
+                </ul>
+            </div>
+            <div class="col s12 m4">
+                <h5>Ingredients</h5>
+                <p>{{recipe.ingredients}}</p>
+            </div>
+            <div class="col s12 m8">
+                <h5>Steps</h5>
+                <p>{{recipe.steps}}</p>
+            </div>
+        </div>
+    </div>
+</div>
 
 {% endblock %}
