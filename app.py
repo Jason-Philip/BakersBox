@@ -101,7 +101,18 @@ def login():
 def profile(name):
     # grab the session user's username from db
     if session["user"]:
-        return render_template("my_box.html", username=name)
+        recipes = list(mongo.db.recipes.find())
+        user = mongo.db.users.find_one({
+            "name": session["user"]
+        })
+
+        recipes_owned = []
+
+        for recipe_id in user["own_recipes"]:
+            recipes_owned.append(mongo.db.recipes.find_one(
+                {"_id": ObjectId(recipe_id)}))
+
+        return render_template("my_box.html", name=name, own_recipes=recipes_owned)
 
     return redirect(url_for("login"))
 
@@ -117,7 +128,8 @@ def logout():
 @app.route("/create_recipe", methods=["GET", "POST"])
 def create_recipe():
     if request.method == "POST":
-    #create new recipe
+        user = mongo.db.users.find_one({"name": session["user"]})
+        #create new recipe
         new_recipe = {
             "recipe_name": request.form.get("recipe_name").lower(),
             "prep": request.form.get("prep"),
@@ -130,6 +142,10 @@ def create_recipe():
             "added_by": session["user"]
         }
         mongo.db.recipes.insert_one(new_recipe)
+
+        mongo.db.users.update_one(
+            user, {"$push": {"own_recipes": str(new_recipe["_id"])}})
+
         return redirect(url_for("profile", name=session["user"]))
     return render_template("create_recipe.html")
 
