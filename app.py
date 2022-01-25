@@ -157,7 +157,6 @@ def create_recipe():
             "cook_time": request.form.get("cook_time"),
             "serves": request.form.get("serves"),
             "cals": request.form.get("cals"),
-            "vegan": request.form.get("vegan"),
             "ingredients": request.form.get("ingredients"),
             "steps": request.form.get("steps"),
             "added_by": session["user"]
@@ -273,6 +272,30 @@ def search_muffins():
     return render_template("search.html", recipes=category_recipe)
 
 
+@app.route("/search/search_vegan", methods=["GET", "POST"])
+def search_vegan():
+    """ 
+    User has searched by Muffins category
+    """
+    category_recipe = []
+    recipes = list(mongo.db.recipes.find())
+
+    for vegan in recipes:
+        if "vegan" in vegan["cat"]:
+            category_recipe.append(vegan)
+    
+    recipes = list(mongo.db.recipes.find())
+    # checks if user is logged in. 
+    if "user" in session:
+        user = mongo.db.users.find_one(
+            {"name": session["user"]})
+        return render_template("search.html", recipes=category_recipe,
+            user=user)
+    
+    return render_template("search.html", recipes=category_recipe)
+
+
+
 @app.route("/edit_recipe/<recipe_id>", methods=["GET", "POST"])
 def edit_recipe(recipe_id):
     """
@@ -293,7 +316,6 @@ def edit_recipe(recipe_id):
                 "cook_time": request.form.get("cook_time"),
                 "serves": request.form.get("serves"),
                 "cals": request.form.get("cals"),
-                "vegan": request.form.get("vegan"),
                 "ingredients": request.form.get("ingredients"),
                 "steps": request.form.get("steps"),
                 "added_by": session["user"]
