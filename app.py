@@ -203,6 +203,23 @@ def search():
     return render_template("search.html", recipes=recipes)
 
 
+@app.route("/search/search_cakes", methods=["GET", "POST"])
+def search_cakes():
+    """ 
+    User has searched by Cakes category
+    """
+    cat = "cakes"
+    recipes = list(mongo.db.recipes.find())
+    # checks if user is logged in.
+    if "user" in session:
+        user = mongo.db.users.find_one(
+            {"name": session["user"]})
+        return render_template("search.html", recipes=recipes,
+            user=user)
+    
+    return render_template("search.html", recipes=recipes)
+
+
 @app.route("/edit_recipe/<recipe_id>", methods=["GET", "POST"])
 def edit_recipe(recipe_id):
     """
