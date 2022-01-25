@@ -209,13 +209,19 @@ def search_cakes():
     """ 
     User has searched by Cakes category
     """
-    cat = "cakes"
+    category_recipe = []
     recipes = list(mongo.db.recipes.find())
-    # checks if user is logged in.
+
+    for caketry in recipes:
+        if "cakes" in caketry["cat"]:
+            category_recipe.append(caketry)
+    
+    recipes = list(mongo.db.recipes.find())
+    # checks if user is logged in. 
     if "user" in session:
         user = mongo.db.users.find_one(
             {"name": session["user"]})
-        return render_template("search.html", recipes=recipes,
+        return render_template("search.html", recipes=category_recipe,
             user=user)
     
     return render_template("search.html", recipes=recipes)
