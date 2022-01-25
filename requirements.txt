@@ -1,11 +1,7 @@
 click==7.1.2
-astroid==2.8.6
-bson==0.5.10
-dnspython==2.1.0
-Flask==2.0.2
+dnspython==2.0.0
+Flask==1.1.2
 Flask-PyMongo==2.3.0
-itsdangerous==2.0.1
-pylint==2.11.1
-pymongo==3.12.1
-typing-extensions==3.10.0.2
-Werkzeug==2.0.2
+itsdangerous==1.1.0
+pymongo==3.11.0
+Werkzeug==1.0.1
