@@ -14,26 +14,46 @@
         <div class="row"><!--Checkbox as if more categories added could be multiple-->
             <p>
                 <label>
-                    <input type="checkbox" name="cat" value="cakes" />
-                    <span>Cakes</span>
+                    {% if "cakes" in  recipe["cat"] %}<!--Added to tick correct boxes-->
+                        <input type="checkbox"  name="cat" value="cakes" checked/>
+                        <span>Cakes</span>
+                    {% else %}
+                        <input type="checkbox" name="cat" value="cakes" />
+                        <span>Cakes</span>
+                    {% endif %}
                 </label>
             </p>
             <p>
                 <label>
+                    {% if "traybakes" in  recipe["cat"] %}
+                    <input type="checkbox" name="cat" value="traybakes" checked/>
+                    <span>Traybakes</span>
+                    {% else %}
                     <input type="checkbox" name="cat" value="traybakes" />
                     <span>Traybakes</span>
+                    {% endif %}
                 </label>
             </p>
             <p>
                 <label>
+                    {% if "muffins" in  recipe["cat"] %}
+                    <input type="checkbox" name="cat" value="muffins" checked/>
+                    <span>Muffins</span>
+                    {% else %}
                     <input type="checkbox" name="cat" value="muffins" />
                     <span>Muffins</span>
+                    {% endif %}
                 </label>
             </p>
             <p>
                 <label>
+                    {% if "vegan" in  recipe["cat"] %}
+                    <input type="checkbox" name="cat" value="vegan" checked/>
+                    <span>Vegan</span>
+                    {% else %}
                     <input type="checkbox" name="cat" value="vegan" />
                     <span>Vegan</span>
+                    {% endif %}
                 </label>
             </p>
         </div>
