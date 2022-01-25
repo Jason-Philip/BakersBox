@@ -62,7 +62,6 @@ def register():
             "password": generate_password_hash(request.form.get("password")),
             "own_recipes": [],
             "planned_recipes": [],
-            "tried_recipes": []
         }
         mongo.db.users.insert_one(register)
 
@@ -121,12 +120,17 @@ def profile(name):
         })
 
         recipes_owned = []
+        recipes_planned = []
 
         for recipe_id in user["own_recipes"]:
             recipes_owned.append(mongo.db.recipes.find_one(
                 {"_id": ObjectId(recipe_id)}))
 
-        return render_template("my_box.html", name=name, own_recipes=recipes_owned)
+        for recipe_id in user["planned_recipes"]:
+            recipes_planned.append(mongo.db.recipes.find_one(
+                {"_id": ObjectId(recipe_id)}))
+
+        return render_template("my_box.html", name=name, own_recipes=recipes_owned, recipes_planned=recipes_planned)
 
     return redirect(url_for("login"))
 
@@ -175,14 +179,16 @@ def recipe_view(recipe_id):
     """
     Displays a unique recipe for viewing.
     """ 
-    if "user" in session:
-        # Set out unique properties
-        recipe = mongo.db.recipes.find_one({"_id": ObjectId(recipe_id)})
-        user = mongo.db.users.find_one({"name": session["user"]})
-    
     recipe = mongo.db.recipes.find_one({"_id": ObjectId(recipe_id)})
+
+    check = str(recipe["_id"])
+
+    if "user" in session:
+        user = mongo.db.users.find_one({"name": session["user"]})
+
+        return render_template("recipe.html", recipe=recipe, user=user,  check=check)
     
-    return render_template("recipe.html", recipe=recipe, user=user)
+    return render_template("recipe.html", recipe=recipe, check=check)
 
 
 @app.route("/search", methods=["GET", "POST"])
@@ -340,6 +346,38 @@ def delete_recipe(recipe_id):
             {"own_recipes": str(recipe["_id"])}})
 
         return redirect(url_for("profile", name=session["user"])) 
+
+
+@app.route("/plan_recipe/<recipe_id>", methods=["GET", "POST"])
+def plan_recipe(recipe_id):
+    """
+    button in recipe to plan a bake
+    adds the bake to My baking Box
+    Planning area
+    """
+
+    user = mongo.db.users.find_one({"name": session["user"]})
+    recipe = mongo.db.recipes.find_one({"_id": ObjectId(recipe_id)})
+
+    mongo.db.users.update_one(
+        user, {"$push": {"planned_recipes": str(recipe["_id"])}})
+
+    return redirect(url_for("recipe_view", recipe_id=recipe_id))
+
+
+@app.route("/remove_plan/<recipe_id>", methods=["GET", "POST"])
+def remove_plan(recipe_id):
+    """
+    button in recipe to remove a planned 
+    bake
+    """
+    user = mongo.db.users.find_one({"name": session["user"]})
+    recipe = mongo.db.recipes.find_one({"_id": ObjectId(recipe_id)})
+
+    mongo.db.users.update_one(user, {"$pull": 
+        {"planned_recipes": str(recipe["_id"])}})
+
+    return redirect(url_for("recipe_view", recipe_id=recipe_id))
 
 
 if __name__ == "__main__":

@@ -12,20 +12,20 @@
                 {% endif %}
                 <p>Recipe by {{recipe.added_by}}</p>
                 <div>
-                    {% if user %}
-                        {% if recipe in user["planned_recipes"] %}
-                        <a href="#"  class="btn btn-large waves-effect waves-light orange">
-                            <p class="off_text">Add to Planned Bakes</p>
-                        </a>
+                    {% if session.user %}
+                        {% if check in user["planned_recipes"] %}
+                            <a href="{{ url_for('remove_plan', recipe_id=recipe._id) }}" type="submit" class="btn btn-large waves-effect waves-light orange">
+                                <p class="off_text">Remove from Planned Bakes</p>
+                            </a>
                         {% else %}
-                        <a href="#"  class="btn btn-large waves-effect waves-light green">
-                            <p class="off_text">Remove from Planned Bakes</p>
-                        </a>
+                            <a href="{{ url_for('plan_recipe', recipe_id=recipe._id) }}" type="submit" class="btn btn-large waves-effect waves-light green">
+                                <p class="off_text">Add to Planned Bakes</p>
+                            </a>
                         {% endif %}
-                        <a href="#"  class="btn btn-large waves-effect waves-light grey">
-                            <p class="off_text">Go to My Bread Box</p>
-                        </a>
                     {% endif %}
+                    <a href="{{ url_for('search') }}"  class="btn btn-large waves-effect waves-light grey">
+                        <p class="off_text">Go to Find a Bake</p>
+                    </a>
                 </div>
                 <ul>
                     <li>Preperation Time: {{recipe.prep}}mins</li>

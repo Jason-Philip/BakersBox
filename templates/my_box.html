@@ -5,14 +5,12 @@
             <h3>Your Baking Box</h3>
             <ul class="collapsible">
                 <li>
-                    <div class="collapsible-header">Bakes You've Tried</div>
-                    <div class="collapsible-body"><span>Lorem ipsum dolor sit amet.</span></div>
-                    <div class="collapsible-body"><span>Lorem ipsum dolor sit amet.</span></div>
-                    <div class="collapsible-body"><span>Lorem ipsum dolor sit amet.</span></div>
-                </li>
-                <li>
-                    <div class="collapsible-header">Planned Bakes</div>
-                    <div class="collapsible-body"><span>Lorem ipsum dolor sit amet.</span></div>
+                    <div class="collapsible-header">Planned Bakes (Add recipes from their page)</div>
+                    {% for plan in recipes_planned %}
+                        <div class="collapsible-body">
+                            <a href="{{ url_for('recipe_view', recipe_id=plan._id) }}">{{ plan.recipe_name.capitalize() }}</a>
+                        </div>
+                    {% endfor %}
                 </li>
                 <li>
                     <div class="collapsible-header">Your Own Recipes</div>
