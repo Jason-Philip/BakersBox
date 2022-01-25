@@ -152,6 +152,7 @@ def create_recipe():
         #create new recipe
         new_recipe = {
             "recipe_name": request.form.get("recipe_name").lower(),
+            "cat": request.form.getlist("cat"),
             "prep": request.form.get("prep"),
             "cook_time": request.form.get("cook_time"),
             "serves": request.form.get("serves"),
@@ -235,6 +236,7 @@ def edit_recipe(recipe_id):
         if request.method == "POST":
             updated = {
                 "recipe_name": request.form.get("recipe_name").lower(),
+                "cat": request.form.getlist("cat"),
                 "prep": request.form.get("prep"),
                 "cook_time": request.form.get("cook_time"),
                 "serves": request.form.get("serves"),
