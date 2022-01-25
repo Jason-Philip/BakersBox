@@ -12,16 +12,20 @@
                 {% endif %}
                 <p>Recipe by {{recipe.added_by}}</p>
                 <div>
-                    {% if recipe in user["planned_recipes"] %}
-                    <a href="#"  class="btn btn-large waves-effect waves-light orange">
-                        <p class="off_text">Add to Planned Bakes</p>
-                    {% else %}
-                    <a href="#"  class="btn btn-large waves-effect waves-light green">
-                        <p class="off_text">Add to Planned Bakes</p>
+                    {% if user %}
+                        {% if recipe in user["planned_recipes"] %}
+                        <a href="#"  class="btn btn-large waves-effect waves-light orange">
+                            <p class="off_text">Add to Planned Bakes</p>
+                        </a>
+                        {% else %}
+                        <a href="#"  class="btn btn-large waves-effect waves-light green">
+                            <p class="off_text">Remove from Planned Bakes</p>
+                        </a>
+                        {% endif %}
+                        <a href="#"  class="btn btn-large waves-effect waves-light grey">
+                            <p class="off_text">Go to My Bread Box</p>
+                        </a>
                     {% endif %}
-                    <a href="#"  class="btn btn-large waves-effect waves-light grey">
-                        <p class="off_text">Go to My Bread Box</p>
-                    </a>
                 </div>
                 <ul>
                     <li>Preperation Time: {{recipe.prep}}mins</li>
