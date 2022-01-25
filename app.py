@@ -224,7 +224,53 @@ def search_cakes():
         return render_template("search.html", recipes=category_recipe,
             user=user)
     
-    return render_template("search.html", recipes=recipes)
+    return render_template("search.html", recipes=category_recipe)
+
+
+@app.route("/search/search_traybakes", methods=["GET", "POST"])
+def search_traybakes():
+    """ 
+    User has searched by Traybakes category
+    """
+    category_recipe = []
+    recipes = list(mongo.db.recipes.find())
+
+    for traybake in recipes:
+        if "traybakes" in traybake["cat"]:
+            category_recipe.append(traybake)
+    
+    recipes = list(mongo.db.recipes.find())
+    # checks if user is logged in. 
+    if "user" in session:
+        user = mongo.db.users.find_one(
+            {"name": session["user"]})
+        return render_template("search.html", recipes=category_recipe,
+            user=user)
+    
+    return render_template("search.html", recipes=category_recipe)
+
+
+@app.route("/search/search_muffins", methods=["GET", "POST"])
+def search_muffins():
+    """ 
+    User has searched by Muffins category
+    """
+    category_recipe = []
+    recipes = list(mongo.db.recipes.find())
+
+    for muffin in recipes:
+        if "muffins" in muffin["cat"]:
+            category_recipe.append(muffin)
+    
+    recipes = list(mongo.db.recipes.find())
+    # checks if user is logged in. 
+    if "user" in session:
+        user = mongo.db.users.find_one(
+            {"name": session["user"]})
+        return render_template("search.html", recipes=category_recipe,
+            user=user)
+    
+    return render_template("search.html", recipes=category_recipe)
 
 
 @app.route("/edit_recipe/<recipe_id>", methods=["GET", "POST"])
