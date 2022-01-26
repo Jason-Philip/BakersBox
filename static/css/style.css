@@ -140,13 +140,31 @@ hr {
 
 /*Styling for the search area*/
 .search_results {
-    width: 100%;
-    height: 20vh;
+    width: 85%;
+    height: 15vh;
+    background-color: #acd1ca;
+    margin-top: 20px;
+    align-content: center;
+    margin: 0 auto;
+    margin-bottom: 35px;
+    border: 5px solid #e37564;
+}
+
+.search_results:hover{
+    background-color: #439788;
+}
+
+.search_results p{
+    display: block;
+    padding-top: 15px;
+    font-size: 18px;
+    color: black;
 }
 
 .text_center {
     text-align: center;
 }
+
 
 /*Styling for the recipe view page*/
 .titleof_recipe {

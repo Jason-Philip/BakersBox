@@ -21,10 +21,12 @@
         <div class="col s12 l8 offset-l2 m10 offset-m1">
             <div class="row">
                 {% for recipe in recipes %}
-                    <div class="col s12 m6 l3">
-                        <div class="container search_results text_center">
-                            <a href="{{ url_for('recipe_view', recipe_id=recipe._id) }}">{{ recipe.recipe_name.capitalize() }}</a>
-                        </div>
+                    <div class="container display_box col s12 m6 l3">
+                        <a href="{{ url_for('recipe_view', recipe_id=recipe._id) }}">
+                            <div class="search_results text_center">
+                                <p>{{ recipe.recipe_name.capitalize() }}</p>
+                            </div>
+                        </a>
                     </div>
                 {% endfor %}
             </div>
