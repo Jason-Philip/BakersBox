@@ -6,11 +6,11 @@
         
         <div class="row">
             <div class="col s12">
-                <h2>{{recipe.recipe_name}}</h2>
+                <h2 class="titleof_recipe">{{recipe.recipe_name}}</h2>
                 {% if "vegan" in recipe["cat"] %}
-                <i class="fas fa-seedling fa-3x"><h6>(Vegan)</h6></i>
+                    <i class="fas fa-seedling fa-3x"><h6>(Vegan)</h6></i>
                 {% endif %}
-                <p>Recipe by {{recipe.added_by}}</p>
+                <p class="made_by">Recipe by {{recipe.added_by}}</p>
                 <div>
                     {% if session.user %}
                         {% if check in user["planned_recipes"] %}

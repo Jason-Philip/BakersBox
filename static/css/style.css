@@ -147,3 +147,13 @@ hr {
 .text_center {
     text-align: center;
 }
+
+/*Styling for the recipe view page*/
+.titleof_recipe {
+    display: inline-block;
+    margin-bottom: 0;
+}
+
+.made_by{
+    margin-top: 0;
+}
