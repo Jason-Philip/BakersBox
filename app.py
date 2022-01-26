@@ -286,7 +286,7 @@ def search_muffins():
 @app.route("/search/search_vegan", methods=["GET", "POST"])
 def search_vegan():
     """
-    User has searched by Muffins category
+    User has searched by vegan category
     """
     category_recipe = []
     recipes = list(mongo.db.recipes.find())
@@ -339,6 +339,10 @@ def edit_recipe(recipe_id):
 
 @app.route("/delete_recipe/<recipe_id>", methods=["GET", "POST"])
 def delete_recipe(recipe_id):
+    """
+    Removes recipe from recipes and 
+    removes links with users
+    """
     if "user" in session:
         # Set out unique properties
 
