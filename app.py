@@ -24,7 +24,7 @@ def home():
     """
     Displays the home page
     """
-    return render_template("home.html") 
+    return render_template("home.html")
 
 
 @app.route("/register", methods=["GET", "POST"])
@@ -48,7 +48,7 @@ def register():
         if existing_user:
             flash("Name already Used")
             return redirect(url_for("register"))
-        
+
         # check passwords are the same
         password = request.form.get("password")
         confirm_password = request.form.get("confirm_password")
@@ -76,7 +76,7 @@ def register():
 @app.route("/login", methods=["GET", "POST"])
 def login():
     """
-    Allows a registerred user to login 
+    Allows a registerred user to login
     if valid and will prevent if not
     """
     if request.method == "POST":
@@ -109,7 +109,7 @@ def login():
 @app.route("/profile/<name>", methods=["GET", "POST"])
 def profile(name):
     """
-    Displays the personalised content 
+    Displays the personalised content
     of the user for them to interact with
     """
     # grab the session user's username from db
@@ -130,7 +130,10 @@ def profile(name):
             recipes_planned.append(mongo.db.recipes.find_one(
                 {"_id": ObjectId(recipe_id)}))
 
-        return render_template("my_box.html", name=name, own_recipes=recipes_owned, recipes_planned=recipes_planned)
+        return render_template("my_box.html"
+                               name=name,
+                               own_recipes=recipes_owned,
+                               recipes_planned=recipes_planned)
 
     return redirect(url_for("login"))
 
@@ -148,12 +151,13 @@ def logout():
 @app.route("/create_recipe", methods=["GET", "POST"])
 def create_recipe():
     """
-    Creates a new recipes and 
+    Creates a new recipes and
     adds the recipe to users owned recipes array
     """
     if request.method == "POST":
         user = mongo.db.users.find_one({"name": session["user"]})
-        #create new recipe
+
+        # create new recipe
         new_recipe = {
             "recipe_name": request.form.get("recipe_name").lower(),
             "cat": request.form.getlist("cat"),
@@ -178,7 +182,7 @@ def create_recipe():
 def recipe_view(recipe_id):
     """
     Displays a unique recipe for viewing.
-    """ 
+    """
     recipe = mongo.db.recipes.find_one({"_id": ObjectId(recipe_id)})
 
     check = str(recipe["_id"])
@@ -186,14 +190,15 @@ def recipe_view(recipe_id):
     if "user" in session:
         user = mongo.db.users.find_one({"name": session["user"]})
 
-        return render_template("recipe.html", recipe=recipe, user=user,  check=check)
-    
+        return render_template("recipe.html", recipe=recipe, user=user,
+                               check=check)
+
     return render_template("recipe.html", recipe=recipe, check=check)
 
 
 @app.route("/search", methods=["GET", "POST"])
 def search():
-    """ 
+    """
     User can choose to search by name or by
     category by dropdown selection, all
     bakes will be displayed underneath otherwise
@@ -204,14 +209,14 @@ def search():
         user = mongo.db.users.find_one(
             {"name": session["user"]})
         return render_template("search.html", recipes=recipes,
-            user=user)
+                               user=user)
 
     return render_template("search.html", recipes=recipes)
 
 
 @app.route("/search/search_cakes", methods=["GET", "POST"])
 def search_cakes():
-    """ 
+    """
     User has searched by Cakes category
     """
     category_recipe = []
@@ -220,21 +225,21 @@ def search_cakes():
     for caketry in recipes:
         if "cakes" in caketry["cat"]:
             category_recipe.append(caketry)
-    
+
     recipes = list(mongo.db.recipes.find())
-    # checks if user is logged in. 
+    # checks if user is logged in.
     if "user" in session:
         user = mongo.db.users.find_one(
             {"name": session["user"]})
         return render_template("search.html", recipes=category_recipe,
-            user=user)
-    
+                               user=user)
+
     return render_template("search.html", recipes=category_recipe)
 
 
 @app.route("/search/search_traybakes", methods=["GET", "POST"])
 def search_traybakes():
-    """ 
+    """
     User has searched by Traybakes category
     """
     category_recipe = []
@@ -243,21 +248,21 @@ def search_traybakes():
     for traybake in recipes:
         if "traybakes" in traybake["cat"]:
             category_recipe.append(traybake)
-    
+
     recipes = list(mongo.db.recipes.find())
-    # checks if user is logged in. 
+    # checks if user is logged in.
     if "user" in session:
         user = mongo.db.users.find_one(
             {"name": session["user"]})
         return render_template("search.html", recipes=category_recipe,
-            user=user)
-    
+                               user=user)
+
     return render_template("search.html", recipes=category_recipe)
 
 
 @app.route("/search/search_muffins", methods=["GET", "POST"])
 def search_muffins():
-    """ 
+    """
     User has searched by Muffins category
     """
     category_recipe = []
@@ -266,21 +271,21 @@ def search_muffins():
     for muffin in recipes:
         if "muffins" in muffin["cat"]:
             category_recipe.append(muffin)
-    
+
     recipes = list(mongo.db.recipes.find())
-    # checks if user is logged in. 
+    # checks if user is logged in.
     if "user" in session:
         user = mongo.db.users.find_one(
             {"name": session["user"]})
         return render_template("search.html", recipes=category_recipe,
-            user=user)
-    
+                               user=user)
+
     return render_template("search.html", recipes=category_recipe)
 
 
 @app.route("/search/search_vegan", methods=["GET", "POST"])
 def search_vegan():
-    """ 
+    """
     User has searched by Muffins category
     """
     category_recipe = []
@@ -289,23 +294,22 @@ def search_vegan():
     for vegan in recipes:
         if "vegan" in vegan["cat"]:
             category_recipe.append(vegan)
-    
+
     recipes = list(mongo.db.recipes.find())
-    # checks if user is logged in. 
+    # checks if user is logged in.
     if "user" in session:
         user = mongo.db.users.find_one(
             {"name": session["user"]})
         return render_template("search.html", recipes=category_recipe,
-            user=user)
-    
-    return render_template("search.html", recipes=category_recipe)
+                               user=user)
 
+    return render_template("search.html", recipes=category_recipe)
 
 
 @app.route("/edit_recipe/<recipe_id>", methods=["GET", "POST"])
 def edit_recipe(recipe_id):
     """
-    Similar to the create recipe form but updates for 
+    Similar to the create recipe form but updates for
     an existing recipe replacing old content
     with new.
     """
@@ -329,7 +333,7 @@ def edit_recipe(recipe_id):
             mongo.db.recipes.update(recipe, updated)
             flash("Recipe Has Been Editted Successfully")
 
-            return redirect(url_for("profile", name=session["user"])) 
+            return redirect(url_for("profile", name=session["user"]))
         return render_template("edit_recipe.html", recipe=recipe, user=user)
 
 
@@ -337,25 +341,26 @@ def edit_recipe(recipe_id):
 def delete_recipe(recipe_id):
     if "user" in session:
         # Set out unique properties
-        
+
         recipe = mongo.db.recipes.find_one({"_id": ObjectId(recipe_id)})
 
         all_users = list(mongo.db.users.find())
 
         for a_user in all_users:
             if str(recipe["_id"]) in a_user["planned_recipes"]:
-                mongo.db.users.update_one(a_user, {"$pull": 
-                    {"planned_recipes": str(recipe["_id"])}})
-        
+                mongo.db.users.update_one(a_user, {"$pull":
+                                          {"planned_recipes":
+                                           str(recipe["_id"])}})
+
         user = mongo.db.users.find_one({"name": session["user"]})
 
-        mongo.db.users.update_one(user, {"$pull": 
-            {"own_recipes": str(recipe["_id"])}})
+        mongo.db.users.update_one(user, {"$pull":
+                                  {"own_recipes": str(recipe["_id"])}})
 
         mongo.db.recipes.remove({"_id": ObjectId(recipe_id)})
         flash("Recipe Has Been Deleted Successfully")
 
-        return redirect(url_for("profile", name=session["user"])) 
+        return redirect(url_for("profile", name=session["user"]))
 
 
 @app.route("/plan_recipe/<recipe_id>", methods=["GET", "POST"])
@@ -378,14 +383,14 @@ def plan_recipe(recipe_id):
 @app.route("/remove_plan/<recipe_id>", methods=["GET", "POST"])
 def remove_plan(recipe_id):
     """
-    button in recipe to remove a planned 
+    button in recipe to remove a planned
     bake
     """
     user = mongo.db.users.find_one({"name": session["user"]})
     recipe = mongo.db.recipes.find_one({"_id": ObjectId(recipe_id)})
 
-    mongo.db.users.update_one(user, {"$pull": 
-        {"planned_recipes": str(recipe["_id"])}})
+    mongo.db.users.update_one(user, {"$pull":
+                              {"planned_recipes": str(recipe["_id"])}})
 
     return redirect(url_for("recipe_view", recipe_id=recipe_id))
 
