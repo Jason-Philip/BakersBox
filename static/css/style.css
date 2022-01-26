@@ -182,3 +182,19 @@ hr {
 .made_by{
     margin-top: 0;
 }
+
+/*Styling for My Baking Box*/
+.my_box{
+    font-size: 22px;
+    color: #439788;
+}
+
+.collapsible-header {
+    font-size: 26px;
+    color: #e37564;
+}
+
+.create_text {
+    font-size: 22px;
+    color: #e37564;
+}
