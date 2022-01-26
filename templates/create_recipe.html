@@ -7,8 +7,8 @@
     <form class="col s12 m6 offset-m3" method="POST" action="{{ url_for('create_recipe') }}">
         <div class="row">
             <div class="input-field col s12 ">
-                <input id="recipe_name" name="recipe_name" type="text" maxlength="50" pattern="^[a-zA-Z0-9_-\s]{1,50}$" class="validate" required>
-                <label for="recipe_name">Recipe Name</label>
+                <input id="recipe_name" name="recipe_name" type="text" maxlength="30" pattern="^[a-zA-Z0-9_-\s]{1,50}$" class="validate" required>
+                <label for="recipe_name">Recipe Name(30 letters max)</label>
             </div>
         </div>
         <div class="row"><!--Checkbox as if more categories added could be multiple-->
@@ -39,18 +39,18 @@
         </div>
         <div class="row">
             <div class="input-field col s6 ">
-                <input id="prep" name="prep" type="text" maxlength="30" pattern="^[0-9]{1,20}$" class="validate" required>
-                <label for="prep">Preperation Time</label>
+                <input id="prep" name="prep" type="text" maxlength="4" pattern="^[0-9]{1,4}$" class="validate" required>
+                <label for="prep">Preperation Time(mins)</label>
             </div>
 
             <div class="input-field col s6 ">
-                <input id="cook_time" name="cook_time" type="text" maxlength="4" pattern="[0-9]{1,20}" class="validate" required>
-                <label for="cook_time">Cooking Time</label>
+                <input id="cook_time" name="cook_time" type="text" maxlength="4" pattern="[0-9]{1,4}" class="validate" required>
+                <label for="cook_time">Cooking Time(mins)</label>
             </div>
 
             <div class="input-field col s6 ">
                 <input id="serves" name="serves" type="text" maxlength="4" pattern="[0-9]{1,4}" class="validate" required>
-                <label for="serves">Serves</label>
+                <label for="serves">Serves(number of people)</label>
             </div>
 
             <div class="input-field col s6 ">
