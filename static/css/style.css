@@ -67,6 +67,12 @@ i {
     margin-top: 10px;
 }
 
+/* Taken from www.w3schools.com */
+.cat_pic:hover {
+    -webkit-filter: blur(2px); /* Safari 6.0 - 9.0 */
+    filter: blur(2px);
+}
+
 img {
     height: 80%;
     display: block;
