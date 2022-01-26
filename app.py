@@ -353,6 +353,7 @@ def delete_recipe(recipe_id):
             {"own_recipes": str(recipe["_id"])}})
 
         mongo.db.recipes.remove({"_id": ObjectId(recipe_id)})
+        flash("Recipe Has Been Deleted Successfully")
 
         return redirect(url_for("profile", name=session["user"])) 
 
