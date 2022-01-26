@@ -7,7 +7,7 @@
     <form class="col s12 m6 offset-m3" method="POST" action="{{ url_for('create_recipe') }}">
         <div class="row">
             <div class="input-field col s12 ">
-                <input id="recipe_name" name="recipe_name" type="text" maxlength="30" pattern="^[a-zA-Z0-9_-\s]{1,50}$" class="validate" required>
+                <input id="recipe_name" name="recipe_name" type="text" maxlength="19" pattern="^[a-zA-Z0-9_-\s]{1,50}$" class="validate" required>
                 <label for="recipe_name">Recipe Name(30 letters max)</label>
             </div>
         </div>
