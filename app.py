@@ -337,13 +337,22 @@ def edit_recipe(recipe_id):
 def delete_recipe(recipe_id):
     if "user" in session:
         # Set out unique properties
-        user = mongo.db.users.find_one({"name": session["user"]})
+        
         recipe = mongo.db.recipes.find_one({"_id": ObjectId(recipe_id)})
 
-        mongo.db.recipes.remove({"_id": ObjectId(recipe_id)})
+        all_users = list(mongo.db.users.find())
+
+        for a_user in all_users:
+            if str(recipe["_id"]) in a_user["planned_recipes"]:
+                mongo.db.users.update_one(a_user, {"$pull": 
+                    {"planned_recipes": str(recipe["_id"])}})
+        
+        user = mongo.db.users.find_one({"name": session["user"]})
 
         mongo.db.users.update_one(user, {"$pull": 
             {"own_recipes": str(recipe["_id"])}})
+
+        mongo.db.recipes.remove({"_id": ObjectId(recipe_id)})
 
         return redirect(url_for("profile", name=session["user"])) 
 
