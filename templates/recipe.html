@@ -6,7 +6,7 @@
         
         <div class="row">
             <div class="col s12">
-                <h2 class="titleof_recipe">{{recipe.recipe_name}}</h2>
+                <h2 class="titleof_recipe">{{recipe.recipe_name|capitalize }}</h2>
                 {% if "vegan" in recipe["cat"] %}
                     <i class="fas fa-seedling fa-3x"><h6>(Vegan)</h6></i>
                 {% endif %}
